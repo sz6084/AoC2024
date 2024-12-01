@@ -13,8 +13,5 @@ print(colOne)
 print(colTwo)
 dist = 0
 for i in range(0,len(lines)):
-    if colOne[i]>colTwo[i]:
-        dist+=int(colOne[i])-int(colTwo[i])
-    else:
-        dist+=int(colTwo[i])-int(colOne[i])
+    dist+=abs(int(colOne[i])-int(colTwo[i]))
 print(dist)
