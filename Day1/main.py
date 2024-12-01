@@ -1,3 +1,4 @@
+## PART ONE ##
 import pathlib
 
 lines = pathlib.Path("input.txt").read_text().split("\n")
@@ -5,13 +6,23 @@ colOne = []
 colTwo = []
 
 for value in lines:
-    colOne.append(value[0])
-    colTwo.append(value[-1])
+    value = value.split()
+    colOne.append(int(value[0]))
+    colTwo.append(int(value[-1]))
 colOne.sort()
 colTwo.sort()
-print(colOne)
-print(colTwo)
+#print(colOne)
+#print(colTwo)
 dist = 0
 for i in range(0,len(lines)):
-    dist+=abs(int(colOne[i])-int(colTwo[i]))
+    dist+=abs(colOne[i]-colTwo[i])
 print(dist)
+
+## PART TWO ##
+
+similarity = 0
+
+for val1 in colOne:
+    occurences = colTwo.count(val1)
+    similarity+=val1*occurences
+print(similarity)
