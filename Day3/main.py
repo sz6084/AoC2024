@@ -3,7 +3,7 @@ import pathlib
 import re
 
 p = r"mul\((\d+),(\d+)\)"
-lines = pathlib.Path("exinput.txt").read_text()
+lines = pathlib.Path("input.txt").read_text()
 
 #print(re.findall(p, lines))
 total = 0
@@ -14,13 +14,16 @@ for a, b in re.findall(p, lines):
 ## PART TWO ##
 total2 = 0
 p_new = r"mul\((\d+),(\d+)\)|(do\(\))|(don't\(\))"
-print(re.findall(p_new, lines))
+#print(re.findall(p_new, lines))
 enabled = True
 for a, b, do, dont in re.findall(p_new, lines):
     if dont:
         enabled = False
-    elif enabled:
+        #print("dont:", a, b)
+    elif enabled and a and b:
         total2+=int(a)*int(b)
-    else:
+        #print("ints:", a, b)
+    elif do:
         enabled = True
-print(sum)
+        #print(a, b)
+print(total2)
