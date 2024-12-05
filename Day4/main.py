@@ -1,7 +1,7 @@
 ## PART ONE ##
 import pathlib, re
 
-lines = pathlib.Path("input.txt").read_text().split("\n")
+lines = pathlib.Path("exinput.txt").read_text().split("\n")
 
 total = 0
 
@@ -37,24 +37,31 @@ for i in range(len(lines_copy)):
 total+=checkVertical(lines_copy)
 print(total)
 
-## DAY TWO ##
+## PART TWO ##
 
 new_total = 0
 
 def checkMAS(lines, i, j):
     total_inner = 0
     try:
-        if "MAS" in (lines[i-1][j-1]+lines[i][j]+lines[i+1][j+1]):
+        if "MAS" == (lines[i-1][j-1]+lines[i][j]+lines[i+1][j+1]):
             total_inner+=1
-        if "SAM" in (lines[i-1][j-1]+lines[i][j]+lines[i+1][j+1]):
+            print("MAS \\",total_inner)
+        if "SAM" == (lines[i-1][j-1]+lines[i][j]+lines[i+1][j+1]):
             total_inner+=1
-        if "MAS" in (lines[i-1][j+1]+lines[i][j]+lines[i+1][j-1]):
+            print("SAM \\",total_inner)
+        if "MAS" == (lines[i+1][j-1]+lines[i][j]+lines[i-1][j+1]):
             total_inner+=1
-        if "SAM" in (lines[i-1][j+1]+lines[i][j]+lines[i+1][j-1]):
+            print("MAS /",total_inner)
+        if "SAM" == (lines[i+1][j-1]+lines[i][j]+lines[i-1][j+1]):
             total_inner+=1
+            print("SAM /",total_inner)
+        print("ret:",total_inner)
         return total_inner
     except:
+        print("fail")
         return total_inner
+1
 for i in range(len(lines)):
     for j in range(len(lines[i])):
         if "A" == lines[i][j]:
