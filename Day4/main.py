@@ -1,7 +1,7 @@
 ## PART ONE ##
 import pathlib, re
 
-lines = pathlib.Path("exinput.txt").read_text().split("\n")
+lines = pathlib.Path("input.txt").read_text().split("\n")
 
 total = 0
 
@@ -43,27 +43,17 @@ new_total = 0
 
 def checkMAS(lines, i, j):
     total_inner = 0
-    try:
-        if "MAS" == (lines[i-1][j-1]+lines[i][j]+lines[i+1][j+1]):
-            total_inner+=1
-            print("MAS \\",total_inner)
-        if "SAM" == (lines[i-1][j-1]+lines[i][j]+lines[i+1][j+1]):
-            total_inner+=1
-            print("SAM \\",total_inner)
-        if "MAS" == (lines[i+1][j-1]+lines[i][j]+lines[i-1][j+1]):
-            total_inner+=1
-            print("MAS /",total_inner)
-        if "SAM" == (lines[i+1][j-1]+lines[i][j]+lines[i-1][j+1]):
-            total_inner+=1
-            print("SAM /",total_inner)
-        print("ret:",total_inner)
-        return total_inner
-    except:
-        print("fail")
-        return total_inner
-1
-for i in range(len(lines)):
-    for j in range(len(lines[i])):
+    if "MAS" == (lines[i-1][j-1]+lines[i][j]+lines[i+1][j+1]):
+        total_inner+=1
+    if "SAM" == (lines[i-1][j-1]+lines[i][j]+lines[i+1][j+1]):
+        total_inner+=1
+    if "MAS" == (lines[i-1][j+1]+lines[i][j]+lines[i+1][j-1]):
+        total_inner+=1
+    if "SAM" == (lines[i-1][j+1]+lines[i][j]+lines[i+1][j-1]):
+        total_inner+=1
+    return total_inner
+for i in range(1, len(lines)-1):
+    for j in range(1, len(lines[i])-1):
         if "A" == lines[i][j]:
             if checkMAS(lines, i, j)>=2:
                 new_total+=1
