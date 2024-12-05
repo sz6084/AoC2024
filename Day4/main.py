@@ -20,23 +20,45 @@ def checkVertical(lines):
 
 #horizontal
 total+=checkHorizontal(lines)
-print("horizontal:",total)
 
 #vertical
 total+=checkVertical(lines)
-print("horizontal+vertical:",total)
 
 #diag1
 lines_copy = lines[:]
 for i in range(len(lines_copy)):
     lines_copy[i] = i*"."+lines_copy[i]+"."*(len(lines_copy[i]) - i)
 total+=checkVertical(lines_copy)
-print("horizontal+vertical+diag1:",total)
 
 #diag2
 lines_copy = lines[:]
 for i in range(len(lines_copy)):
     lines_copy[i] = "."*(len(lines_copy) - i)+lines_copy[i]+i*"."
 total+=checkVertical(lines_copy)
-print("horizontal+vertical+diag1+diag2:",total)
-#print(total)
+print(total)
+
+## DAY TWO ##
+
+new_total = 0
+
+def checkMAS(lines, i, j):
+    total_inner = 0
+    try:
+        if "MAS" in (lines[i-1][j-1]+lines[i][j]+lines[i+1][j+1]):
+            total_inner+=1
+        if "SAM" in (lines[i-1][j-1]+lines[i][j]+lines[i+1][j+1]):
+            total_inner+=1
+        if "MAS" in (lines[i-1][j+1]+lines[i][j]+lines[i+1][j-1]):
+            total_inner+=1
+        if "SAM" in (lines[i-1][j+1]+lines[i][j]+lines[i+1][j-1]):
+            total_inner+=1
+        return total_inner
+    except:
+        return total_inner
+for i in range(len(lines)):
+    for j in range(len(lines[i])):
+        if "A" == lines[i][j]:
+            if checkMAS(lines, i, j)>=2:
+                new_total+=1
+
+print(new_total)
