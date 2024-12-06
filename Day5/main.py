@@ -1,5 +1,5 @@
 ## PART ONE ##
-import pathlib, re
+import pathlib
 
 lines = pathlib.Path("exinput.txt").read_text().split("\n")
 
