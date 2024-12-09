@@ -1,5 +1,5 @@
 ## PART ONE ##
-import pathlib, re
+import pathlib
 
 line = pathlib.Path("input.txt").read_text()
 
@@ -30,4 +30,15 @@ while None in disk_map:
 checksum = 0
 for i in range(len(disk_map)):
     checksum+=i*disk_map[i]
-print(checksum)
+print(checksum) # run time 38 secs
+
+## PART TWO ##
+
+# find blank runs, find non-contiguous blocks
+# move non-contiguous blocks that fit into blank runs
+# treat blocks as files
+
+# i%2 = 0
+for i in range(len(disk_map)-1, 0):
+    if i % 2 != 0:
+        if disk_map[i]
